@@ -28,7 +28,7 @@ body {
 /* Main Wrapper for Mobile Centering */
 .container {
     width: 100%;
-    max-width: 450px; /* Mobile par stretch nahi hoga aur clean dikhega */
+    max-width: 450px;
     margin: 0 auto;
 }
 
@@ -71,7 +71,7 @@ ul {
 
 ul li {
     margin: 10px 0;
-    font-size: 14px; /* Mobile par aasani se padhne ke liye size badhaya */
+    font-size: 14px;
     line-height: 1.4;
 }
 
@@ -97,9 +97,9 @@ ul li span {
     animation: gradientMove 6s ease infinite;
     box-shadow: 0 5px 25px rgba(255,255,255,0.15);
     transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
-/* Mobile par hover effect ajeeb na lage isliye active state */
 .btn:active {
     transform: scale(0.98);
 }
@@ -123,7 +123,7 @@ ul li span {
     position: fixed;
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Mobile screen ke bilkul center me pop-up aayega */
+    transform: translateX(-50%);
     width: 90%;
     max-width: 320px;
     background: #1c2e4a;
@@ -178,7 +178,7 @@ src="https://www.facebook.com/tr?id=766620933108154&ev=PageView&noscript=1"
         </ul>
     </div>
 
-    <a href="https://t.me/+pk4cA9YRLdxjY2Y1" class="btn" onclick="fbq('track', 'Subscribe', {value: '0.00', currency: 'USD', predicted_ltv: '0.00'});">
+    <a href="https://t.me/+pk4cA9YRLdxjY2Y1" class="btn" onclick="trackAndRedirect(event, this.href)">
         Join Harmonic Trader Raj Community
     </a>
 
@@ -187,6 +187,23 @@ src="https://www.facebook.com/tr?id=766620933108154&ev=PageView&noscript=1"
 <div class="popup" id="popup"></div>
 
 <script>
+// Function to make sure event fires before redirecting
+function trackAndRedirect(event, url) {
+    event.preventDefault(); // Pehle link khulne se rokega
+    
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'Subscribe', {value: '0.00', currency: 'USD', predicted_ltv: '0.00'});
+        
+        // Facebook code execute hone ke liye 300ms ka chhota sa pause dega aur fir redirect karega
+        setTimeout(function() {
+            window.location.href = url;
+        }, 300);
+    } else {
+        // Agar pixel load nahi hua, toh seedhe open ho jayega
+        window.location.href = url;
+    }
+}
+
 const names = ["Ravi", "Amit", "Rahul", "Suresh", "Karan", "Vikram", "Ankit"];
 
 function showPopup() {
@@ -201,7 +218,6 @@ function showPopup() {
     }, 3000);
 }
 
-// Show popup every 5 sec
 setInterval(showPopup, 5000);
 </script>
 
