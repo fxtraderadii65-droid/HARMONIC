@@ -6,82 +6,109 @@
 <title>Hormonic Trader Raj</title>
 
 <style>
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #0a1a3f, #08142b);
     color: #ffffff;
     text-align: center;
+    padding: 20px 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Wrapper for Mobile Centering */
+.container {
+    width: 100%;
+    max-width: 450px; /* Mobile par stretch nahi hoga aur clean dikhega */
+    margin: 0 auto;
 }
 
 /* Heading */
 h1 {
-    font-size: 30px;
-    margin-top: 30px;
+    font-size: 28px;
+    margin-bottom: 25px;
     color: #7fd6ff;
+    line-height: 1.3;
 }
 
 /* Card */
 .card {
-    width: 70%;
-    max-width: 450px;
-    margin: 20px auto;
-    padding: 15px;
-    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
     background: linear-gradient(145deg, #2c3e66, #25345a);
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    margin-bottom: 25px;
 }
 
 .card h2 {
     color: #7fd6ff;
-    font-size: 14px;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
 
 .card p {
-    font-size: 8px;
+    font-size: 13px;
     color: #dcdcdc;
+    margin-bottom: 15px;
 }
 
 /* List */
 ul {
     text-align: left;
-    margin-top: 10px;
-    padding-left: 10px;
+    padding-left: 15px;
+    list-style: none;
 }
 
 ul li {
-    margin: 6px 0;
-    font-size: 9px;
+    margin: 10px 0;
+    font-size: 14px; /* Mobile par aasani se padhne ke liye size badhaya */
+    line-height: 1.4;
 }
 
 ul li span {
     color: #7fd6ff;
     font-weight: bold;
+    margin-right: 5px;
 }
 
 /* 🌈 7 COLOR GRADIENT BUTTON */
 .btn {
-    display: inline-block;
-    margin: 40px auto;
-    padding: 18px 30px;
-    width: 75%;
-    max-width: 450px;
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
     border-radius: 15px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     color: white;
     background: linear-gradient(270deg,
         red, orange, yellow, green, cyan, blue, violet);
     background-size: 1400% 1400%;
     animation: gradientMove 6s ease infinite;
-    box-shadow: 0 5px 25px rgba(255,255,255,0.3);
-    transition: 0.3s;
+    box-shadow: 0 5px 25px rgba(255,255,255,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.btn:hover {
-    transform: scale(1.07);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+/* Mobile par hover effect ajeeb na lage isliye active state */
+.btn:active {
+    transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
 }
 
 /* Gradient Animation */
@@ -95,19 +122,25 @@ ul li span {
 .popup {
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Mobile screen ke bilkul center me pop-up aayega */
+    width: 90%;
+    max-width: 320px;
     background: #1c2e4a;
     padding: 12px 18px;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     font-size: 14px;
     display: none;
-    animation: fadeIn 0.5s ease;
+    z-index: 999;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+@media (min-width: 480px) {
+    .popup {
+        left: 20px;
+        transform: none;
+        width: auto;
+    }
 }
 
 </style>
@@ -115,25 +148,28 @@ ul li span {
 </head>
 <body>
 
-<h1>Welcome To<br>Harmonic Trader Raj</h1>
+<div class="container">
 
-<div class="card">
-    <h2>VIP SIGNALS</h2>
-    <p>Exclusive FX trading signals by RAJ </p>
+    <h1>Welcome To<br>Harmonic Trader Raj</h1>
 
-    <ul>
-        <li><span>1.</span> உண்மையான சந்தை பகுப்பாய்வு</li>
-        <li><span>2.</span> நுழைவு & வெளியேறும் புள்ளிகள்</li>
-        <li><span>3.</span> அபாய மேலாண்மை</li>
-        <li><span>4.</span> 24/7 ஆதரவு</li>
-    </ul>
+    <div class="card">
+        <h2>VIP SIGNALS</h2>
+        <p>Exclusive FX trading signals by RAJ</p>
+
+        <ul>
+            <li><span>1.</span> உண்மையான சந்தை பகுப்பாய்வு</li>
+            <li><span>2.</span> நுழைவு & வெளியேறும் புள்ளிகள்</li>
+            <li><span>3.</span> அபாய மேலாண்மை</li>
+            <li><span>4.</span> 24/7 ஆதரவு</li>
+        </ul>
+    </div>
+
+    <a href="https://t.me/+pk4cA9YRLdxjY2Y1" class="btn">
+        Join Harmonic Trader Raj Community
+    </a>
+
 </div>
 
-<a href="https://t.me/+pk4cA9YRLdxjY2Y1" class="btn">
-    Join Harmonic Trader Raj Community
-</a>
-
-<!-- 🔔 Fake Notification -->
 <div class="popup" id="popup"></div>
 
 <script>
@@ -151,7 +187,7 @@ function showPopup() {
     }, 3000);
 }
 
-// Show popup every 2 sec
+// Show popup every 5 sec
 setInterval(showPopup, 5000);
 </script>
 
